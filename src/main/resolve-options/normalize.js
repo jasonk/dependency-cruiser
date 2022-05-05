@@ -10,6 +10,7 @@ const {
 } = require("../../graph-utl/rule-set");
 
 const DEFAULT_CACHE_DURATION = 4000;
+/** @type {Partial<import("../../../types/dependency-cruiser").IResolveOptions>} */
 const DEFAULT_RESOLVE_OPTIONS = {
   // for later: check semantics of enhanced-resolve symlinks and
   // node's preserveSymlinks. They seem to be
@@ -40,6 +41,11 @@ const DEFAULT_RESOLVE_OPTIONS = {
   exportsFields: [],
 };
 
+/**
+ *
+ * @param {Number} pCacheDuration
+ * @returns {Partial<import("../../../types/dependency-cruiser").IResolveOptions>}
+ */
 function getNonOverridableResolveOptions(pCacheDuration) {
   return {
     // This should cover most of the bases of dependency-cruiser's
@@ -112,6 +118,13 @@ function compileResolveOptions(
   };
 }
 
+/**
+ *
+ * @param {import("../../../types/dependency-cruiser").IResolveOptions} pResolveOptions
+ * @param {import("../../../types/dependency-cruiser").ICruiseOptions} pOptions
+ * @param {import("typescript").ParsedTsconfig} pTSConfig
+ * @returns
+ */
 module.exports = function normalizeResolveOptions(
   pResolveOptions,
   pOptions,
@@ -126,7 +139,7 @@ module.exports = function normalizeResolveOptions(
         symlink === !preserveSymlinks - but using it that way
         breaks backwards compatibility
       */
-      symlinks: pOptions.preserveSymlinks,
+      symlinks: _get(pOptions, "preserveSymlinks", null),
       tsConfig: _get(pOptions, "ruleSet.options.tsConfig.fileName", null),
 
       /* squirel the externalModuleResolutionStrategy and combinedDependencies
@@ -134,7 +147,7 @@ module.exports = function normalizeResolveOptions(
          - they're not for enhanced resolve, but they are for what we consider
          resolve options ...
        */
-      combinedDependencies: pOptions.combinedDependencies,
+      combinedDependencies: _get(pOptions, "combinedDependencies", false),
       resolveLicenses: ruleSetHasLicenseRule(lRuleSet),
       resolveDeprecations: ruleSetHasDeprecationRule(lRuleSet),
       ...(pResolveOptions || {}),

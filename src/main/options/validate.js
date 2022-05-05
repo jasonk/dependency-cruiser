@@ -55,6 +55,12 @@ function validatePathsSafety(pFilterOption) {
   validateRegExpSafety(_get(pFilterOption, "pathNot", ""));
 }
 
+/**
+ *
+ * @param {import("../../../types/dependency-cruiser").ICruiseOptions} pOptions
+ * @throws {Error}
+ * @returns {import("../../../types/dependency-cruiser").ICruiseOptions}
+ */
 function validateCruiseOptions(pOptions) {
   let lReturnValue = {};
 
@@ -83,6 +89,11 @@ function validateCruiseOptions(pOptions) {
   return lReturnValue;
 }
 
+/**
+ *
+ * @param {import("../../../types/dependency-cruiser").IFormatOptions} pFormatOptions
+ * @throws {Error}
+ */
 function validateFormatOptions(pFormatOptions) {
   validatePathsSafety(pFormatOptions.exclude);
   validatePathsSafety(pFormatOptions.focus);

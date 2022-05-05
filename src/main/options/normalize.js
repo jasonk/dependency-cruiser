@@ -67,6 +67,11 @@ function normalizeCollapse(pCollapse) {
   return lReturnValue;
 }
 
+/**
+ *
+ * @param {import("../../../types/dependency-cruiser").IForbiddenRuleType} pRule
+ * @returns {boolean}
+ */
 function hasMetricsRule(pRule) {
   // TODO: philosophy: is a rule with 'folder' in it a metrics rule?
   //       Or is it a misuse to ensure folder derivations (like cycles) get
@@ -76,6 +81,11 @@ function hasMetricsRule(pRule) {
   );
 }
 
+/**
+ *
+ * @param {import("../../../types/dependency-cruiser").IFlattenedRuleSet} pRuleSet
+ * @returns {boolean}
+ */
 function ruleSetHasMetricsRule(pRuleSet) {
   const lRuleSet = pRuleSet || {};
   return (
@@ -136,6 +146,11 @@ function normalizeCruiseOptions(pOptions) {
   return lReturnValue;
 }
 
+/**
+ *
+ * @param {import("../../../types/dependency-cruiser").IFormatOptions} pFormatOptions
+ * @returns {import("../../../types/dependency-cruiser").IFormatOptions}
+ */
 function normalizeFormatOptions(pFormatOptions) {
   const lFormatOptions = clone(pFormatOptions);
 

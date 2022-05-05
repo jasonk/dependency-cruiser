@@ -34,8 +34,8 @@ function normalizeRule(pRule) {
  * - rule name (default 'unnamed')
  * - severity (default 'warn')
  *
- * @param  {object} pRuleSet [description]
- * @return {object}          [description]
+ * @param  {import("../../../types/dependency-cruiser").IFlattenedRuleSet} pRuleSet [description]
+ * @return {import("../../../types/dependency-cruiser").IFlattenedRuleSet}          [description]
  */
 module.exports = function normalizeRuleSet(pRuleSet) {
   if (_has(pRuleSet, "allowed")) {
